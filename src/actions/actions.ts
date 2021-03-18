@@ -1,15 +1,21 @@
+import {todoItem} from '../reducers/todoReducers'
+
 export type Action = {
   type: string;
-  payload: { text?: string; isActive?: boolean; id?: number };
+  payload: todoItem;
 };
 
-export interface Input {
-    text: string,
-    isActive: boolean,
-    id: number
-}
+export const addTodo = (input: todoItem): Action => ({
+  type: "ADD_TODO",
+  payload: input,
+});
 
-export const addTodo = (input:Input):Action => ({
-  type: 'ADD_TODO',
-  payload: input
+export const removeTodo = (input: todoItem): Action => ({
+  type: "REMOVE_TODO",
+  payload: input,
+});
+
+export const changeTodo = (input: todoItem): Action => ({
+  type: "CHANGE_TODO",
+  payload: input,
 });

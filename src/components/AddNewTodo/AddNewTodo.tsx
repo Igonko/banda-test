@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {addTodo} from '../../actions/actions'
-import {Input} from '../../actions/actions'
-import "./AddNewTodo.css";
+import { addTodo } from '../../actions/actions'
+import { todoItem } from '../../reducers/todoReducers';
+import "./AddNewTodo.scss";
 
 const AddNewTodo: React.FC = () => {
   const [input, setInput] = useState({
@@ -13,7 +13,7 @@ const AddNewTodo: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const onAddTodo = (input: Input) => {
+  const onAddTodo = (input: todoItem) => {
     dispatch(addTodo(input));
   };
 
@@ -25,7 +25,8 @@ const AddNewTodo: React.FC = () => {
     });
   };
 
-  const onAddTodoClick = () => {
+  const onAddTodoClick = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     onAddTodo(input);
     setInput({
       text: "",
@@ -35,7 +36,7 @@ const AddNewTodo: React.FC = () => {
   };
 
   return (
-    <form className='add_todo_form'>
+    <form className='add_todo_form' onSubmit={onAddTodoClick}>
       <input
         type='text'
         className='add_todo_input'
@@ -43,9 +44,7 @@ const AddNewTodo: React.FC = () => {
         value={input.text}
         onChange={newTodo}
       />
-      <button className='add_todo_btn' onClick={onAddTodoClick}>
-        Add Todo
-      </button>
+      <button className='add_todo_btn' type="submit">Add Todo</button>
     </form>
   );
 };

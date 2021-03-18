@@ -1,25 +1,36 @@
 import {Action} from '../actions/actions';
 
-type todo = {
-  text: string,
-  isActive: boolean,
-  id: number
-}
+export type todoItem = {
+  text: string;
+  isActive: boolean;
+  id: number;
+};
 
 export interface TodoState {
-  todos: todo[]
+  todos: todoItem[];
 }
 
-const initialState = {
+const initialState: TodoState = {
   todos: [],
 };
 
-
-
-export const todoReducers = (state: TodoState = initialState, action: Action) => {
+export const todoReducers = (state = initialState, action: Action): TodoState => {
   switch (action.type) {
     case "ADD_TODO": {
-      return { ...state, todos: [...state.todos, action.payload] };
+      return {todos: [...state.todos, action.payload] };
+    }
+    case "REMOVE_TODO": {
+      const { id } = action.payload;
+      return {todos: state.todos.filter((todo: todoItem) => todo.id !== id)};
+    }
+    case "CHANGE_TODO": {
+      const { id } = action.payload;
+      // return {todos: state.todos.map((todo: todoItem) => {
+      //   if(todo.id === id) {
+      //     todo.isActive = !todo.isActive;
+      //   }
+      // })};
+      return state;
     }
     default:
       return state;

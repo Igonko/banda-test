@@ -1,18 +1,21 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { TodoState } from "../../reducers/todoReducers";
+import { AppState } from "../../store/store";
+import TodoItem from "../TodoItem/TodoItem";
+import "./TodoList.scss";
 
 const TodoList: React.FC = () => {
-  const todos = useSelector<TodoState>(state => state.todos);
+  const todos = useSelector((state: AppState) => state.todo.todos);
 
   return (
     <ul className='todo_list'>
       {todos.map(todo => (
-        <li
-          className={`todo_list_item ${todo.isActive ? "active" : ""}`}
-          key={todo.id}>
-          {todo.text}
-        </li>
+        <TodoItem
+          isActive={todo.isActive}
+          text={todo.text}
+          id={todo.id}
+          key={todo.id}
+        />
       ))}
     </ul>
   );
