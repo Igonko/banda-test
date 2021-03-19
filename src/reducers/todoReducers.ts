@@ -1,4 +1,4 @@
-import {Action} from '../actions/actions';
+import { Action, ChangeFilter, ActionsInside } from "../actions/actions";
 
 export type todoItem = {
   text: string;
@@ -7,30 +7,41 @@ export type todoItem = {
 };
 
 export interface TodoState {
-  todos: todoItem[];
+  todos: todoItem[]
+  filter?: string
 }
 
 const initialState: TodoState = {
   todos: [],
+  filter: 'normal'
 };
 
-export const todoReducers = (state = initialState, action: Action): TodoState => {
+type rootActions = Action | ChangeFilter
+
+export const todoReducers = (state = initialState, action: rootActions): TodoState => {
   switch (action.type) {
-    case "ADD_TODO": {
-      return {todos: [...state.todos, action.payload] };
+    case ActionsInside.ADD_ITEM: {
+      return { ...state, todos: [...state.todos, action.payload] };
     }
-    case "REMOVE_TODO": {
+    case ActionsInside.REMOVE_ITEM: {
       const { id } = action.payload;
-      return {todos: state.todos.filter((todo: todoItem) => todo.id !== id)};
+      return {
+        ...state,
+        todos: state.todos.filter((todo: todoItem) => todo.id !== id),
+      };
     }
-    case "CHANGE_TODO": {
+    case ActionsInside.CHANGE_ITEM: {
       const { id } = action.payload;
-      // return {todos: state.todos.map((todo: todoItem) => {
-      //   if(todo.id === id) {
-      //     todo.isActive = !todo.isActive;
-      //   }
-      // })};
-      return state;
+      const newTodos = state.todos.map((todo: todoItem) => {
+        if (todo.id === id) {
+          todo.isActive = !todo.isActive;
+        }
+        return todo;
+      });
+      return { ...state, todos: [...newTodos] };
+    }
+    case ActionsInside.SORT_ITEM: {
+      return { ...state, filter: action.payload };
     }
     default:
       return state;
