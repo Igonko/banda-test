@@ -1,31 +1,23 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { todoItem } from "../../reducers/todoReducers";
-import { removeTodo } from "../../actions/actions";
-import { changeTodo } from "../../actions/actions";
+import { TodoItemType } from "../../types/types";
+import { removeTodo, changeTodo } from "../../actions/actions";
 import "./TodoItem.scss";
 
-interface TodoItemProps {
-  isActive: boolean;
-  text: string;
-  id: number;
-}
-
-const TodoItem: React.FC<TodoItemProps> = ({isActive,text,id,}: TodoItemProps) => {
-  
-  const item: TodoItemProps = {
-    isActive,
+const TodoItem: React.FC<TodoItemType> = ({ text, isActive, id }:TodoItemType) => {
+  const item: TodoItemType = {
     text,
+    isActive,
     id,
   };
 
   const dispatch = useDispatch();
 
-  const onRemoveTodo = (input: todoItem) => {
+  const onRemoveTodo = (input: TodoItemType) => {
     dispatch(removeTodo(input));
   };
 
-  const onChangeInput = (input: todoItem) => {
+  const onChangeInput = (input: TodoItemType) => {
     dispatch(changeTodo(input));
   };
 

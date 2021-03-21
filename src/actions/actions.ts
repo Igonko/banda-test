@@ -1,33 +1,21 @@
-import {todoItem} from '../reducers/todoReducers'
+import {
+  TodoItemType,
+  ActionsInside,
+  Action,
+  ChangeFilter,
+} from "../types/types";
 
-export type Action = {
-  type: ActionsInside.ADD_ITEM | ActionsInside.REMOVE_ITEM | ActionsInside.CHANGE_ITEM;
-  payload: todoItem;
-};
-
-export type ChangeFilter = {
-  type: ActionsInside.SORT_ITEM;
-  payload: string;
-};
-
-export enum ActionsInside {
-  ADD_ITEM = "ADD_TODO",
-  REMOVE_ITEM = "REMOVE_TODO",
-  CHANGE_ITEM = "CHANGE_TODO",
-  SORT_ITEM = "SORT_TODO",
-}
-
-export const addTodo = (input: todoItem): Action => ({
+export const addTodo = (input: TodoItemType): Action => ({
   type: ActionsInside.ADD_ITEM,
   payload: input,
 });
 
-export const removeTodo = (input: todoItem): Action => ({
+export const removeTodo = (input: TodoItemType): Action => ({
   type: ActionsInside.REMOVE_ITEM,
   payload: input,
 });
 
-export const changeTodo = (input: todoItem): Action => ({
+export const changeTodo = (input: TodoItemType): Action => ({
   type: ActionsInside.CHANGE_ITEM,
   payload: input,
 });

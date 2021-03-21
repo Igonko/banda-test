@@ -1,12 +1,6 @@
 import { combineReducers, createStore } from "redux";
-import { todoReducers } from "../reducers/todoReducers";
-import { TodoState } from '../reducers/todoReducers';
+import { todoReducer } from "../reducers/todoReducers";
 
-export interface AppState {
-  todo: TodoState;
-}
-
-const rootReducer = combineReducers({ todo: todoReducers });
-
+const rootReducer = combineReducers({ todo: todoReducer });
 
 export const store = createStore(rootReducer);

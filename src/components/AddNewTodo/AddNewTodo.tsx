@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from '../../actions/actions'
-import { todoItem } from '../../reducers/todoReducers';
+import { addTodo } from "../../actions/actions";
+import { TodoItemType } from "../../types/types";
 import "./AddNewTodo.scss";
 
 const AddNewTodo: React.FC = () => {
@@ -13,7 +13,7 @@ const AddNewTodo: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const onAddTodo = (input: todoItem) => {
+  const onAddTodo = (input: TodoItemType) => {
     dispatch(addTodo(input));
   };
 
@@ -44,7 +44,9 @@ const AddNewTodo: React.FC = () => {
         value={input.text}
         onChange={newTodo}
       />
-      <button className='add_todo_btn' type="submit">Add Todo</button>
+      <button className='add_todo_btn' type='submit'>
+        Add Todo
+      </button>
     </form>
   );
 };

@@ -7,6 +7,7 @@
   position: relative;
   transition: 0.2s linear;
   margin-bottom: 10px;
+  word-break: break-all;
   &::before {
     content: "";
     position: absolute;
@@ -22,6 +23,17 @@
     text-decoration: line-through;
     &::before {
       width: 100%;
+    }
+    & .todo_list_item_span::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 5px;
+      border-left: 2px solid #008000;
+      border-bottom: 2px solid #008000;
+      transform: rotate(-45deg) translate(-50%, -50%) scale(1);
+      left: 50%;
+      top: 1;
     }
   }
 
@@ -43,7 +55,7 @@
     background: #ff0000;
     cursor: pointer;
     position: relative;
-    transition: .2s linear;
+    transition: 0.2s linear;
     &::before {
       content: "";
       position: absolute;
@@ -104,7 +116,7 @@
     &::before {
       content: "";
       transform: rotate(-45deg) translate(-50%, -50%) scale(0);
-      transition: .2s linear;
+      transition: 0.2s linear;
     }
   }
 }
