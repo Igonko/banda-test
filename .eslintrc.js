@@ -18,7 +18,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
+    "react/prop-types": 0,
     "react/jsx-filename-extension": [1, { extensions: [".tsx", ".ts"] }],
-    "react/prop-types": "off",
   },
 };

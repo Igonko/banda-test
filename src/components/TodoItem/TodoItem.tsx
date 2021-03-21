@@ -6,8 +6,6 @@ import "./TodoItem.scss";
 
 const TodoItem: React.FC<TodoItemType> = ({ text, isActive, id }) => {
 
-
-
   const item: TodoItemType = {
     text,
     isActive,
