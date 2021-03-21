@@ -27,12 +27,14 @@ const AddNewTodo: React.FC = () => {
 
   const onAddTodoClick = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onAddTodo(input);
-    setInput({
-      text: "",
-      isActive: false,
-      id: 0,
-    });
+    if(input.text.length > 0) {
+      onAddTodo(input);
+      setInput({
+        text: "",
+        isActive: false,
+        id: 0,
+      });
+    }
   };
 
   return (
