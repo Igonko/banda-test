@@ -4,7 +4,10 @@ import { TodoItemType } from "../../types/types";
 import { removeTodo, changeTodo } from "../../actions/actions";
 import "./TodoItem.scss";
 
-const TodoItem: React.FC<TodoItemType> = ({ text, isActive, id }:TodoItemType) => {
+const TodoItem: React.FC<TodoItemType> = ({ text, isActive, id }) => {
+
+
+
   const item: TodoItemType = {
     text,
     isActive,
